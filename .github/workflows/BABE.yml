@@ -42,7 +42,7 @@ jobs:
           npm install -g newman-reporter-htmlextra
           
        # Run Collection  
-      - name: Run Collection
+      - id: newman-run
         run: |
           newman run "BABE-IMP Automation.postman_collection.json" -e "BABE Environment.postman_environment.json"
         continue-on-error: true
