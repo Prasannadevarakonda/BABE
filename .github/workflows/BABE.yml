@@ -44,7 +44,7 @@ jobs:
        # Run Collection  
       - id: newman-run
         run: |
-          newman run "BABE-IMP Automation.postman_collection.json" -e "BABE Environment.postman_environment.json"
+          newman run "BABE-IMP Automation.postman_collection.json" -e "BABE Environment.postman_environment.json" -d IMP_TestData.csv
         continue-on-error: true
         
       # Generate Report
