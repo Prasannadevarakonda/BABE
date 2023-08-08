@@ -50,7 +50,7 @@ jobs:
       # Generate Report
       - name: Generate Report
         run: |
-         newman run "BABE-IMP Automation.postman_collection.json" -e "BABE Environment.postman_environment.json" -d IMP_TestData -r htmlextra --reporter-htmlextra-export SampleArtifacts/report.html
+         newman run "BABE-IMP Automation.postman_collection.json" -e "BABE Environment.postman_environment.json" -d IMP_TestData.csv -r htmlextra --reporter-htmlextra-export SampleArtifacts/report.html
         if: ${{ always() }} 
        
      # Publish the Report
