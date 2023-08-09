@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "8575e613-a6d6-429b-a5aa-a771dbe2ef75",
+		"name": "BABE-OTHER Automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29041441"
+	},
+	"item": [
+		{
+			"name": "SendEmail",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"try {\r",
+							"    \r",
+							"        pm.response.to.have.status(200);\r",
+							"        const statusCode = pm.response.code;\r",
+							"        pm.test(\"Email sent and expected Status code: \" + statusCode, function () {\r",
+							"            pm.expect(statusCode).to.equal(200);\r",
+							"    \r",
+							"    });\r",
+							"} catch (error) {\r",
+							"    pm.test(\"Test results - Error\", function () {\r",
+							"        throw new Error(\"Error: \" + error.message);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiJlMm43cDFXWmdvU3c1YytqRW5IdkcxaGtFVjJzRUJ1bFwvSVZ1WjVNVllyZz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNjI3ZTkzYS1hYTBmLTQwN2EtODIzOC0zNDdhN2YzMTU1MDUiLCJjb2duaXRvOmdyb3VwcyI6WyJ1cy13ZXN0LTJfSW9DdlFNNWNVX29rdGFTU08iLCJBUFBfQkFCRV9NRU1CRVJTIiwiQWxsIEdpbGVhZCBJbnRlcm5hbCBVc2VycyIsbnVsbF0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX0lvQ3ZRTTVjVSIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjR2MXNvbHJ0bWJpajM5N2xkZmNkNHBraGNyIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJwaG9uZSBvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF1dGhfdGltZSI6MTY5MTU2ODQ1MSwiZXhwIjoxNjkxNTcyMDUxLCJpYXQiOjE2OTE1Njg0NTIsImp0aSI6ImUzYzkxMTc1LTI1MjEtNGE4Yy05NmRiLTdmZTQ3YzIzYTQyZSIsInVzZXJuYW1lIjoib2t0YXNzb19wcmFzYW5uYS5wcml5YTFAZ2lsZWFkLmNvbSJ9.Tl8-ht2FQCYAXJzQoSqCwbIOVkfL-BaiFla4PQ52E-1fzZHRjX_tJq1ni7G8Uwjk8cH5MhBR5wiZ_mlSjlD_Y-psAZ0S_g-MG5Y_2ulj7Gpg3xkodmuBLrpotMIi9HtUAsK1o6cbccUcLmxp99NSg47r7_HaVhEzjAVmt4aRyncn89hUuAihGPEug7jdPEI6-qv53BUAWg9IIDn0HN2ZaGCsyQnvpiYDXL6k1XjyjxwqLUvJblirdX-WyPkZUyhjaf9b1LjljPD9qkNaQl-pCj0Yi2fuff5d5strEhvlRpMXKkdJCsAaevN-qNIDT3EQP_h8IDLH7CDjKniBsJr4Jg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n  \"from\": \"noreply@gilead.com\",\r\n\r\n  \"to\": [\"srinivasarao.jonnalagadda1@gilead.com\",\"prateekkumar.jain5@gilead.com\"],\r\n\r\n  \"cc\": [],\r\n\r\n  \"bcc\": [],\r\n\r\n  \"subject\": \"This is test email subject using HTTP API\",\r\n\r\n  \"body\": \"This is test email body using HTTP API\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4uahkvzq3a.execute-api.us-west-2.amazonaws.com/dev/email",
+					"protocol": "https",
+					"host": [
+						"4uahkvzq3a",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"email"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
