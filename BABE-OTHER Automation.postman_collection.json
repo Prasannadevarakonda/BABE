@@ -51,7 +51,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJraWQiOiJlMm43cDFXWmdvU3c1YytqRW5IdkcxaGtFVjJzRUJ1bFwvSVZ1WjVNVllyZz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNjI3ZTkzYS1hYTBmLTQwN2EtODIzOC0zNDdhN2YzMTU1MDUiLCJjb2duaXRvOmdyb3VwcyI6WyJ1cy13ZXN0LTJfSW9DdlFNNWNVX29rdGFTU08iLCJBUFBfQkFCRV9NRU1CRVJTIiwiQWxsIEdpbGVhZCBJbnRlcm5hbCBVc2VycyIsbnVsbF0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX0lvQ3ZRTTVjVSIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjR2MXNvbHJ0bWJpajM5N2xkZmNkNHBraGNyIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJwaG9uZSBvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF1dGhfdGltZSI6MTY5MTU2ODQ1MSwiZXhwIjoxNjkxNTcyMDUxLCJpYXQiOjE2OTE1Njg0NTIsImp0aSI6ImUzYzkxMTc1LTI1MjEtNGE4Yy05NmRiLTdmZTQ3YzIzYTQyZSIsInVzZXJuYW1lIjoib2t0YXNzb19wcmFzYW5uYS5wcml5YTFAZ2lsZWFkLmNvbSJ9.Tl8-ht2FQCYAXJzQoSqCwbIOVkfL-BaiFla4PQ52E-1fzZHRjX_tJq1ni7G8Uwjk8cH5MhBR5wiZ_mlSjlD_Y-psAZ0S_g-MG5Y_2ulj7Gpg3xkodmuBLrpotMIi9HtUAsK1o6cbccUcLmxp99NSg47r7_HaVhEzjAVmt4aRyncn89hUuAihGPEug7jdPEI6-qv53BUAWg9IIDn0HN2ZaGCsyQnvpiYDXL6k1XjyjxwqLUvJblirdX-WyPkZUyhjaf9b1LjljPD9qkNaQl-pCj0Yi2fuff5d5strEhvlRpMXKkdJCsAaevN-qNIDT3EQP_h8IDLH7CDjKniBsJr4Jg",
+						"value": "eyJraWQiOiJlMm43cDFXWmdvU3c1YytqRW5IdkcxaGtFVjJzRUJ1bFwvSVZ1WjVNVllyZz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNjI3ZTkzYS1hYTBmLTQwN2EtODIzOC0zNDdhN2YzMTU1MDUiLCJjb2duaXRvOmdyb3VwcyI6WyJ1cy13ZXN0LTJfSW9DdlFNNWNVX29rdGFTU08iLCJBUFBfQkFCRV9NRU1CRVJTIiwiQWxsIEdpbGVhZCBJbnRlcm5hbCBVc2VycyIsbnVsbF0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX0lvQ3ZRTTVjVSIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjR2MXNvbHJ0bWJpajM5N2xkZmNkNHBraGNyIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJwaG9uZSBvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF1dGhfdGltZSI6MTY5MTU4MTQzNCwiZXhwIjoxNjkxNTg1MDM0LCJpYXQiOjE2OTE1ODE0MzUsImp0aSI6ImNkZTc2ZmQxLWFmMTgtNGJhZi04YTJhLTE2ZDk5YjQwYTY5NSIsInVzZXJuYW1lIjoib2t0YXNzb19wcmFzYW5uYS5wcml5YTFAZ2lsZWFkLmNvbSJ9.KUuzO6azyJgvKQgUMCKDTOumSFJ6pDbd7nrtsUVpCu81q7QJ8KBuqxKZXBZLYy12pHbCH0aenfSuoeazSD1Io8pTjXIsishjH7fcmExcmkXi4p6xgT4d4dK5JQYzpqcyHiBhqz5ORNpHUo9z0KlVZ1RQYdjcp57lLJj7onaR-2sNfRHPZpoLtQwtEr8SKsdzQu86LrqyT09YPBdEd_VoEImkqvlpJlcDNXE8jToVL8tv8Btx8IJecseh4goWxASlYMaVXd8RTY3_l6BWsbRpElxwIzNLw-SWwqlmXiCfVjXafzMNWRqaHSaC_OG6xT2LTNTgixW8gFylyNliIRLElw",
 						"type": "text"
 					}
 				],
@@ -65,17 +65,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://4uahkvzq3a.execute-api.us-west-2.amazonaws.com/dev/email",
-					"protocol": "https",
+					"raw": "{{BABEbaseURL}}/email",
 					"host": [
-						"4uahkvzq3a",
-						"execute-api",
-						"us-west-2",
-						"amazonaws",
-						"com"
+						"{{BABEbaseURL}}"
 					],
 					"path": [
-						"dev",
 						"email"
 					]
 				}
