@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "f7f0ff09-29ec-457e-bf95-fe98d52f5dbe",
+		"name": "BABE-STUDY Automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29041441"
+	},
+	"item": [
+		{
+			"name": "List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"try {\r",
+							"    \r",
+							"        pm.response.to.have.status(200);\r",
+							"        const statusCode = pm.response.code;\r",
+							"        pm.test(\"Expected Status code: \" + statusCode, function () {\r",
+							"            pm.expect(statusCode).to.equal(200);\r",
+							"    \r",
+							"    });\r",
+							"} catch (error) {\r",
+							"    pm.test(\"Test results - Error\", function () {\r",
+							"        throw new Error(\"Error: \" + error.message);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"///////////////////// Get the expected id from the CSV file\r",
+							"var expectedId = pm.iterationData.get('id');\r",
+							"var expectedprotocol = pm.iterationData.get('protocol');\r",
+							"var expectedtherapeutic_area = pm.iterationData.get('therapeutic_area');\r",
+							"var expectedstudy_drug = pm.iterationData.get('study_drug');\r",
+							"var expectedsubmission_date = pm.iterationData.get('submission_date');\r",
+							"var expectedclinops_contact_name = pm.iterationData.get('clinops_contact_name');\r",
+							"var expectedclin_pharm_contact_name = pm.iterationData.get('clin_pharm_contact_name');\r",
+							"var expectedra_contact_name = pm.iterationData.get('ra_contact_name');\r",
+							"var expectedstatus = pm.iterationData.get('status');\r",
+							"var expectedcomments = pm.iterationData.get('comments');\r",
+							"var expectedproduct_name= pm.iterationData.get('product_name');\r",
+							"var expectedsubmission_type= pm.iterationData.get('submission_type');\r",
+							"var expectedclinops_contact_email= pm.iterationData.get('clinops_contact_email');\r",
+							"\r",
+							"\r",
+							"// Parse the JSON response\r",
+							"var jsonArray = pm.response.json();\r",
+							"\r",
+							"// Find the record with the expected id\r",
+							"var recordWithExpectedId = jsonArray.find(function(record) {\r",
+							"    return record.id === expectedId;\r",
+							"});\r",
+							"\r",
+							"// Validate fields for the record with the expected id\r",
+							"pm.test(\"Validated id field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"        // Validate id\r",
+							"        pm.expect(recordWithExpectedId.id).to.equal(expectedId);\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"// Validate protocol field for the record with the expected id\r",
+							"pm.test(\"Validated protocol field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate protocol\r",
+							"        pm.expect(recordWithExpectedId.protocol, \"Validated part_number for id = \" + expectedId).to.equal(expectedprotocol);\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"// Validate therapeutic_area field for the record with the expected id\r",
+							"pm.test(\"Validated therapeutic_area field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate therapeutic_area\r",
+							"        pm.expect(recordWithExpectedId.therapeutic_area, \"Validated therapeutic_area for id = \" + expectedId).to.equal(expectedtherapeutic_area);\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"// Validate study_drug field for the record with the expected id\r",
+							"pm.test(\"Validated study_drug field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"        if (expectedstudy_drug === 'null') {\r",
+							"            pm.expect(recordWithExpectedId.study_drug, \"Validated study_drug for id = \" + expectedId).to.equal(null);\r",
+							"        } else {\r",
+							"            pm.expect(recordWithExpectedId.study_drug, \"Validated study_drug for id = \" + expectedId).to.equal(expectedstudy_drug);\r",
+							"        }\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"// Validate submission_date field for the record with the expected id\r",
+							"pm.test(\"Validated submission_date field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate submission_date\r",
+							"    if (expectedsubmission_date === 'null') {\r",
+							"            pm.expect(recordWithExpectedId.submission_date, \"Validated submission_date for id = \" + expectedId).to.equal(null);\r",
+							"        } else {\r",
+							"            pm.expect(recordWithExpectedId.submission_date, \"Validated submission_date for id = \" + expectedId).to.equal(expectedsubmission_date);\r",
+							"        }\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate clinops_contact_name field for the record with the expected id\r",
+							"pm.test(\"Validated clinops_contact_name field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate clinops_contact_name\r",
+							"         if (expectedclinops_contact_name === 'null') {\r",
+							"            pm.expect(recordWithExpectedId.clinops_contact_name, \"Validated clinops_contact_name for id = \" + expectedId).to.equal(null);\r",
+							"        } else {\r",
+							"            pm.expect(recordWithExpectedId.clinops_contact_name, \"Validated clinops_contact_name for id = \" + expectedId).to.equal(expectedclinops_contact_name);\r",
+							"        }\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"// Validate clin_pharm_contact_name field for the record with the expected id\r",
+							"pm.test(\"Validated clin_pharm_contact_name field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate clin_pharm_contact_name\r",
+							"       if (expectedclin_pharm_contact_name === 'null') {\r",
+							"            pm.expect(recordWithExpectedId.clin_pharm_contact_name, \"Validated clin_pharm_contact_name for id = \" + expectedId).to.equal(null);\r",
+							"        } else {\r",
+							"            pm.expect(recordWithExpectedId.clin_pharm_contact_name, \"Validated clin_pharm_contact_name for id = \" + expectedId).to.equal(expectedclin_pharm_contact_name);\r",
+							"        }\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"// Validate ra_contact_name field for the record with the expected id\r",
+							"pm.test(\"Validated ra_contact_name field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate ra_contact_name\r",
+							"         if (expectedra_contact_name === 'null') {\r",
+							"            pm.expect(recordWithExpectedId.ra_contact_name, \"Validated ra_contact_name for id = \" + expectedId).to.equal(null);\r",
+							"        } else {\r",
+							"            pm.expect(recordWithExpectedId.ra_contact_name, \"Validated ra_contact_name for id = \" + expectedId).to.equal(expectedra_contact_name);\r",
+							"        }\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate status field for the record with the expected id\r",
+							"pm.test(\"Validated status field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate status\r",
+							"        pm.expect(recordWithExpectedId.status, \"Validated status for id = \" + expectedId).to.equal(expectedstatus);\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"// Validate comments field for the record with the expected id\r",
+							"pm.test(\"Validated comments field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate comments\r",
+							"        if (expectedcomments === 'null') {\r",
+							"            pm.expect(recordWithExpectedId.comments, \"Validated comments for id = \" + expectedId).to.equal(null);\r",
+							"        } else {\r",
+							"            pm.expect(recordWithExpectedId.comments, \"Validated comments for id = \" + expectedId).to.equal(expectedcomments);\r",
+							"        }\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate product_name field for the record with the expected id\r",
+							"pm.test(\"Validated product_name field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate product_name\r",
+							"        pm.expect(recordWithExpectedId.product_name, \"Validated product_name for id = \" + expectedId).to.equal(expectedproduct_name);\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate submission_type field for the record with the expected id\r",
+							"pm.test(\"Validated submission_type field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate submission_type\r",
+							"        if (expectedsubmission_type === 'null') {\r",
+							"            pm.expect(recordWithExpectedId.submission_type, \"Validated submission_type for id = \" + expectedId).to.equal(null);\r",
+							"        } else {\r",
+							"            pm.expect(recordWithExpectedId.submission_type, \"Validated submission_type for id = \" + expectedId).to.equal(expectedsubmission_type);\r",
+							"        }\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate clinops_contact_email field for the record with the expected id\r",
+							"pm.test(\"Validated clinops_contact_email field for id = \" + expectedId, function () {\r",
+							"    if (recordWithExpectedId) {\r",
+							"         \r",
+							"        // Validate clinops_contact_email\r",
+							"        if (expectedclinops_contact_email === 'null') {\r",
+							"            pm.expect(recordWithExpectedId.clinops_contact_email, \"Validated clinops_contact_email for id = \" + expectedId).to.equal(null);\r",
+							"        } else {\r",
+							"            pm.expect(recordWithExpectedId.clinops_contact_email, \"Validated clinops_contact_email for id = \" + expectedId).to.equal(expectedclinops_contact_email);\r",
+							"        }\r",
+							"         } else {\r",
+							"        pm.expect.fail(\"Record with id \" + expectedId + \" not found in JSON response\");\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiJlMm43cDFXWmdvU3c1YytqRW5IdkcxaGtFVjJzRUJ1bFwvSVZ1WjVNVllyZz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNjI3ZTkzYS1hYTBmLTQwN2EtODIzOC0zNDdhN2YzMTU1MDUiLCJjb2duaXRvOmdyb3VwcyI6WyJ1cy13ZXN0LTJfSW9DdlFNNWNVX29rdGFTU08iLCJBUFBfQkFCRV9NRU1CRVJTIiwiQWxsIEdpbGVhZCBJbnRlcm5hbCBVc2VycyIsbnVsbF0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX0lvQ3ZRTTVjVSIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjR2MXNvbHJ0bWJpajM5N2xkZmNkNHBraGNyIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJwaG9uZSBvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF1dGhfdGltZSI6MTY5MTU3NjU4NCwiZXhwIjoxNjkxNTgwMTg0LCJpYXQiOjE2OTE1NzY1ODQsImp0aSI6ImU3YTE4OGQ1LThkZDMtNDYxNC1hNWVhLTc2Y2E2ZDI0MjY5NCIsInVzZXJuYW1lIjoib2t0YXNzb19wcmFzYW5uYS5wcml5YTFAZ2lsZWFkLmNvbSJ9.fbsaeAVNsNgusLBg0k1R1Afdr0i6-N_Mxtud5FMA6jPQh3WR5szSDX7wkTnJsmFpD6WHs0KcQf-GXfFpUXdKkOyFYaEaJOMGlt1C1_nGrL6pJDrcdu6HNGVJbbzjQIpA_UrKxfz53chRuuUnkeSWapM03A4jHKoraw-rfx6Tb6KnqX-uliGwT1fuw7fJNwbh4ddxQJUFphJ9nVvnn5_Sn-7ejTL6m2ItGZ48eK_9Hz9RbgCHw23ZY63ZATPJOicmTvfbo-mjSzJx_HprfSYdAWC0I2uvIRAU8WtR1u8HGQ2IRjt9fisCMYHyVNjroHyBN1MYQCaYpCyG-EgFbGALhA",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "IDPToken",
+						"value": "eyJraWQiOiJtNnEwcFU3dFNFcVg0QkVcL25NUTFxZGRBcDBWMHJPdlhISnR2WkJ5K3VoST0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiYmhlYzM2cV9OMTZ2OFljcWZoX0FaUSIsInN1YiI6Ijc2ZDQ5YTRlLTFlM2EtNDI3Yi05MmE3LTEwN2ZhMjNkMDlhNSIsImNvZ25pdG86Z3JvdXBzIjpbInVzLXdlc3QtMl9Jb0N2UU01Y1VfQXV0aGVudGljYXRlIl0sImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLXdlc3QtMi5hbWF6b25hd3MuY29tXC91cy13ZXN0LTJfSW9DdlFNNWNVIiwiY29nbml0bzp1c2VybmFtZSI6ImF1dGhlbnRpY2F0ZV9wcmF0ZWVra3VtYXIuamFpbjVAZ2lsZWFkLmNvbSIsImdpdmVuX25hbWUiOiJQcmF0ZWVrIEt1bWFyIiwiYXVkIjoiNHYxc29scnRtYmlqMzk3bGRmY2Q0cGtoY3IiLCJpZGVudGl0aWVzIjpbeyJ1c2VySWQiOiJwcmF0ZWVra3VtYXIuamFpbjVAZ2lsZWFkLmNvbSIsInByb3ZpZGVyTmFtZSI6IkF1dGhlbnRpY2F0ZSIsInByb3ZpZGVyVHlwZSI6IlNBTUwiLCJpc3N1ZXIiOiJodHRwOlwvXC93d3cub2t0YS5jb21cL2V4azR2bTliNWhhUzVGaXR6Njk3IiwicHJpbWFyeSI6InRydWUiLCJkYXRlQ3JlYXRlZCI6IjE2ODE5NzUwMDk5NDgifV0sInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjgxOTc1Nzk2LCJleHAiOjE2ODE5NzkzOTYsImlhdCI6MTY4MTk3NTc5NiwiZmFtaWx5X25hbWUiOiJKYWluIiwiZW1haWwiOiJwcmF0ZWVra3VtYXIuamFpbjVAZ2lsZWFkLmNvbSJ9.lLUkCrouVFvR2tA2FUoCyYxcYYtNKWUGjEN1ioqrFv771RGjo18RAUei9W5EOWbZxJFt771SAEDliHZuyTiul0A5B4Ul7EIEyQ33dpwMF0-M3IyDcEkthnHr1Xyjhsf06K9uDWXhhEyeQHpKNheIQbNgBrNmtJPrJRPEaex9HdK_9DYfX6Rzh8YohiPa1NGEXfRkE9_5L9y0ENNOPj2UmD9-M3jwCe7NjDioLFE2389Fdm4VDbsOVvYSzdLWnva9Q-wutZHznLmTfm_2RC1RMfyoC0s0AsL8FeN4wArxsciDwUOgI4bditML6DoJAouK_2MuqVuQfCF9zGG87QjRzA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{BABEbaseURL}}/study",
+					"host": [
+						"{{BABEbaseURL}}"
+					],
+					"path": [
+						"study"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"try {\r",
+							"    \r",
+							"        pm.response.to.have.status(200);\r",
+							"        const statusCode = pm.response.code;\r",
+							"        pm.test(\"Expected Status code: \" + statusCode, function () {\r",
+							"            pm.expect(statusCode).to.equal(200);\r",
+							"    \r",
+							"    });\r",
+							"} catch (error) {\r",
+							"    pm.test(\"Test results - Error\", function () {\r",
+							"        throw new Error(\"Error: \" + error.message);\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiJlMm43cDFXWmdvU3c1YytqRW5IdkcxaGtFVjJzRUJ1bFwvSVZ1WjVNVllyZz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNjI3ZTkzYS1hYTBmLTQwN2EtODIzOC0zNDdhN2YzMTU1MDUiLCJjb2duaXRvOmdyb3VwcyI6WyJ1cy13ZXN0LTJfSW9DdlFNNWNVX29rdGFTU08iLCJBUFBfQkFCRV9NRU1CRVJTIiwiQWxsIEdpbGVhZCBJbnRlcm5hbCBVc2VycyIsbnVsbF0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX0lvQ3ZRTTVjVSIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjR2MXNvbHJ0bWJpajM5N2xkZmNkNHBraGNyIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJwaG9uZSBvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF1dGhfdGltZSI6MTY5MTU3NjU4NCwiZXhwIjoxNjkxNTgwMTg0LCJpYXQiOjE2OTE1NzY1ODQsImp0aSI6ImU3YTE4OGQ1LThkZDMtNDYxNC1hNWVhLTc2Y2E2ZDI0MjY5NCIsInVzZXJuYW1lIjoib2t0YXNzb19wcmFzYW5uYS5wcml5YTFAZ2lsZWFkLmNvbSJ9.fbsaeAVNsNgusLBg0k1R1Afdr0i6-N_Mxtud5FMA6jPQh3WR5szSDX7wkTnJsmFpD6WHs0KcQf-GXfFpUXdKkOyFYaEaJOMGlt1C1_nGrL6pJDrcdu6HNGVJbbzjQIpA_UrKxfz53chRuuUnkeSWapM03A4jHKoraw-rfx6Tb6KnqX-uliGwT1fuw7fJNwbh4ddxQJUFphJ9nVvnn5_Sn-7ejTL6m2ItGZ48eK_9Hz9RbgCHw23ZY63ZATPJOicmTvfbo-mjSzJx_HprfSYdAWC0I2uvIRAU8WtR1u8HGQ2IRjt9fisCMYHyVNjroHyBN1MYQCaYpCyG-EgFbGALhA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BABEbaseURL}}/study/{{id}}",
+					"host": [
+						"{{BABEbaseURL}}"
+					],
+					"path": [
+						"study",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiJlMm43cDFXWmdvU3c1YytqRW5IdkcxaGtFVjJzRUJ1bFwvSVZ1WjVNVllyZz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNjI3ZTkzYS1hYTBmLTQwN2EtODIzOC0zNDdhN2YzMTU1MDUiLCJjb2duaXRvOmdyb3VwcyI6WyJ1cy13ZXN0LTJfSW9DdlFNNWNVX29rdGFTU08iLCJBUFBfQkFCRV9NRU1CRVJTIiwiQWxsIEdpbGVhZCBJbnRlcm5hbCBVc2VycyIsbnVsbF0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX0lvQ3ZRTTVjVSIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjR2MXNvbHJ0bWJpajM5N2xkZmNkNHBraGNyIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJwaG9uZSBvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF1dGhfdGltZSI6MTY5MTU3NjU4NCwiZXhwIjoxNjkxNTgwMTg0LCJpYXQiOjE2OTE1NzY1ODQsImp0aSI6ImU3YTE4OGQ1LThkZDMtNDYxNC1hNWVhLTc2Y2E2ZDI0MjY5NCIsInVzZXJuYW1lIjoib2t0YXNzb19wcmFzYW5uYS5wcml5YTFAZ2lsZWFkLmNvbSJ9.fbsaeAVNsNgusLBg0k1R1Afdr0i6-N_Mxtud5FMA6jPQh3WR5szSDX7wkTnJsmFpD6WHs0KcQf-GXfFpUXdKkOyFYaEaJOMGlt1C1_nGrL6pJDrcdu6HNGVJbbzjQIpA_UrKxfz53chRuuUnkeSWapM03A4jHKoraw-rfx6Tb6KnqX-uliGwT1fuw7fJNwbh4ddxQJUFphJ9nVvnn5_Sn-7ejTL6m2ItGZ48eK_9Hz9RbgCHw23ZY63ZATPJOicmTvfbo-mjSzJx_HprfSYdAWC0I2uvIRAU8WtR1u8HGQ2IRjt9fisCMYHyVNjroHyBN1MYQCaYpCyG-EgFbGALhA",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \"protocol\": \"TestCO-US-216-0135\",\r\n  \"comments\": \"test comment\",\r\n  \"therapeutic_area\": \"testVirology\",\r\n  \"study_drug\": \"testupdated\",\r\n  \"clinops_contact_name\": \"TestName\",\r\n  \"clin_pharm_contact_name\": \"Vincent vinod test\",\r\n  \"status\": \"Completed\",\r\n  \"product_name\": \"Test product\",\r\n  \"submission_type\": \"TestUSType\"\r\n }"
+				},
+				"url": {
+					"raw": "{{BABEbaseURL}}/study/{{updateid}}",
+					"host": [
+						"{{BABEbaseURL}}"
+					],
+					"path": [
+						"study",
+						"{{updateid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByIDAfterUpdate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"try {\r",
+							"    \r",
+							"        pm.response.to.have.status(200);\r",
+							"        const statusCode = pm.response.code;\r",
+							"        pm.test(\"Expected Status code: \" + statusCode, function () {\r",
+							"            pm.expect(statusCode).to.equal(200);\r",
+							"    \r",
+							"    });\r",
+							"} catch (error) {\r",
+							"    pm.test(\"Test results - Error\", function () {\r",
+							"        throw new Error(\"Error: \" + error.message);\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiJlMm43cDFXWmdvU3c1YytqRW5IdkcxaGtFVjJzRUJ1bFwvSVZ1WjVNVllyZz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNjI3ZTkzYS1hYTBmLTQwN2EtODIzOC0zNDdhN2YzMTU1MDUiLCJjb2duaXRvOmdyb3VwcyI6WyJ1cy13ZXN0LTJfSW9DdlFNNWNVX29rdGFTU08iLCJBUFBfQkFCRV9NRU1CRVJTIiwiQWxsIEdpbGVhZCBJbnRlcm5hbCBVc2VycyIsbnVsbF0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX0lvQ3ZRTTVjVSIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjR2MXNvbHJ0bWJpajM5N2xkZmNkNHBraGNyIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJwaG9uZSBvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF1dGhfdGltZSI6MTY5MTU3NjU4NCwiZXhwIjoxNjkxNTgwMTg0LCJpYXQiOjE2OTE1NzY1ODQsImp0aSI6ImU3YTE4OGQ1LThkZDMtNDYxNC1hNWVhLTc2Y2E2ZDI0MjY5NCIsInVzZXJuYW1lIjoib2t0YXNzb19wcmFzYW5uYS5wcml5YTFAZ2lsZWFkLmNvbSJ9.fbsaeAVNsNgusLBg0k1R1Afdr0i6-N_Mxtud5FMA6jPQh3WR5szSDX7wkTnJsmFpD6WHs0KcQf-GXfFpUXdKkOyFYaEaJOMGlt1C1_nGrL6pJDrcdu6HNGVJbbzjQIpA_UrKxfz53chRuuUnkeSWapM03A4jHKoraw-rfx6Tb6KnqX-uliGwT1fuw7fJNwbh4ddxQJUFphJ9nVvnn5_Sn-7ejTL6m2ItGZ48eK_9Hz9RbgCHw23ZY63ZATPJOicmTvfbo-mjSzJx_HprfSYdAWC0I2uvIRAU8WtR1u8HGQ2IRjt9fisCMYHyVNjroHyBN1MYQCaYpCyG-EgFbGALhA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BABEbaseURL}}/study/{{updateid}}",
+					"host": [
+						"{{BABEbaseURL}}"
+					],
+					"path": [
+						"study",
+						"{{updateid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
