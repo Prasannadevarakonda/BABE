@@ -50,7 +50,6 @@ jobs:
             
      # Publish the Report
       - name: Publish Report
-        if: always()
         uses: actions/upload-artifact@v3
         with:
          name: Reports
