@@ -44,7 +44,7 @@ jobs:
        # Run Collection  
       - name: Run Collection
         run: |
-          newman run "BABE-IMP Automation.postman_collection.json" -e "BABE Environment.postman_environment.json" -d IMP_TestData.csv -r htmlextra --reporter-htmlextra-export SampleArtifact/report.html
+          newman run "BABE-IMP Automation.postman_collection1.json" -e "BABE Environment.postman_environment1.json" -d IMP_TestData.csv -r htmlextra --reporter-htmlextra-export SampleArtifact/report.html
         
         
             
