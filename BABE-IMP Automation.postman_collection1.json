@@ -417,6 +417,19 @@
 							"// Set the request URL for Request B\r",
 							"pm.request.url.update(requestBUrl);\r",
 							"\r",
+							"// After the PUT request\r",
+							"pm.environment.set(\"updatedDescription\", \"Test1 Dronedarone 400 mg TB, 60 ct.\");\r",
+							"pm.environment.set(\"updatedComments\", \"Test2\");\r",
+							"pm.environment.set(\"updatedLotNumber\", \"CC12\");\r",
+							"pm.environment.set(\"updatedrelease_testing_requirement\", \"Test2\");\r",
+							"pm.environment.set(\"updatedcontainers_retained\", \"Test2\");\r",
+							"pm.environment.set(\"updatedprotocol_id\", \"11GS-US-291-0109\");\r",
+							"pm.environment.set(\"updatedrelease_testing_requirement_unit\", \"Test2\");\r",
+							"pm.environment.set(\"updatedcontainers_required_unit\", \"Test2\");\r",
+							"pm.environment.set(\"updateddrug_id\", \"3-7428I\");\r",
+							"\r",
+							"// ... and so on for other updated fields\r",
+							"\r",
 							"\r",
 							"try {\r",
 							"    \r",
@@ -460,6 +473,107 @@
 					"mode": "raw",
 					"raw": "{\r\n     \r\n    \"description\": \"Test1 Dronedarone 400 mg TB, 60 ct.\",\r\n    \"comments\": \"Test2\",\r\n    \"lot_number\": \"CC12\",\r\n    \"release_testing_requirement\": \"Test2\",\r\n    \"containers_retained\": \"Test2\",\r\n    \"protocol_id\": \"11GS-US-291-0109\",\r\n    \"release_testing_requirement_unit\": \"Test2\",\r\n    \"containers_required_unit\": \"Test2\",\r\n    \"drug_id\": \"3-7428I\"\r\n}"
 				},
+				"url": {
+					"raw": "{{BABEbaseURL}}/imp/{{responseBodyFromCreateRequest}}",
+					"host": [
+						"{{BABEbaseURL}}"
+					],
+					"path": [
+						"imp",
+						"{{responseBodyFromCreateRequest}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByIdAfterupdate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Get the saved response body from the environment variable\r",
+							"var requestBody = pm.environment.get(\"responseBodyFromCreateRequest\");\r",
+							"\r",
+							"// Construct the URL for Request B using the requestBody\r",
+							"var requestBUrl = pm.variables.replaceIn(\"{{BABEbaseURL}}/\" + requestBody);\r",
+							"\r",
+							"// Set the request URL for Request B\r",
+							"pm.request.url.update(requestBUrl);\r",
+							"\r",
+							"\r",
+							"try {\r",
+							"    \r",
+							"        pm.response.to.have.status(200);\r",
+							"        const statusCode = pm.response.code;\r",
+							"        pm.test(\"Expected Status code: \" + statusCode, function () {\r",
+							"            pm.expect(statusCode).to.equal(200);\r",
+							"    \r",
+							"    });\r",
+							"} catch (error) {\r",
+							"    pm.test(\"Test results - Error\", function () {\r",
+							"        throw new Error(\"Error: \" + error.message);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"var responseBody1 = pm.response.json();\r",
+							"\r",
+							" pm.test(\"Verified updated Description value\", function () {\r",
+							"        pm.expect(responseBody1.description).to.equal(pm.environment.get(\"updatedDescription\"));\r",
+							"          });\r",
+							"   pm.test(\"Verified updated comments value\", function () {        \r",
+							"        pm.expect(responseBody1.comments).to.equal(pm.environment.get(\"updatedComments\"));\r",
+							"        });\r",
+							"        pm.test(\"Verified updated lot_number value\", function () {   \r",
+							"        pm.expect(responseBody1.lot_number).to.equal(pm.environment.get(\"updatedLotNumber\"));\r",
+							"            });\r",
+							"\r",
+							" pm.test(\"Verified updated release_testing_requirement value\", function () {   \r",
+							"        pm.expect(responseBody1.release_testing_requirement).to.equal(pm.environment.get(\"updatedrelease_testing_requirement\"));\r",
+							"            });\r",
+							"\r",
+							"pm.test(\"Verified updated containers_retained value\", function () {   \r",
+							"        pm.expect(responseBody1.containers_retained).to.equal(pm.environment.get(\"updatedcontainers_retained\"));\r",
+							"            });\r",
+							"\r",
+							"pm.test(\"Verified updated protocol_id value\", function () {   \r",
+							"        pm.expect(responseBody1.protocol_id).to.equal(pm.environment.get(\"updatedprotocol_id\"));\r",
+							"            });\r",
+							"\r",
+							"pm.test(\"Verified updated release_testing_requirement_unit value\", function () {   \r",
+							"        pm.expect(responseBody1.release_testing_requirement_unit).to.equal(pm.environment.get(\"updatedrelease_testing_requirement_unit\"));\r",
+							"            });\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verified updated containers_required_unit value\", function () {   \r",
+							"        pm.expect(responseBody1.containers_required_unit).to.equal(pm.environment.get(\"updatedcontainers_required_unit\"));\r",
+							"            });\r",
+							"\r",
+							"pm.test(\"Verified updated drug_id value\", function () {   \r",
+							"        pm.expect(responseBody1.drug_id).to.equal(pm.environment.get(\"updateddrug_id\"));\r",
+							"            });\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "IDPToken",
+						"value": "eyJraWQiOiJtNnEwcFU3dFNFcVg0QkVcL25NUTFxZGRBcDBWMHJPdlhISnR2WkJ5K3VoST0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiYmhlYzM2cV9OMTZ2OFljcWZoX0FaUSIsInN1YiI6Ijc2ZDQ5YTRlLTFlM2EtNDI3Yi05MmE3LTEwN2ZhMjNkMDlhNSIsImNvZ25pdG86Z3JvdXBzIjpbInVzLXdlc3QtMl9Jb0N2UU01Y1VfQXV0aGVudGljYXRlIl0sImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLXdlc3QtMi5hbWF6b25hd3MuY29tXC91cy13ZXN0LTJfSW9DdlFNNWNVIiwiY29nbml0bzp1c2VybmFtZSI6ImF1dGhlbnRpY2F0ZV9wcmF0ZWVra3VtYXIuamFpbjVAZ2lsZWFkLmNvbSIsImdpdmVuX25hbWUiOiJQcmF0ZWVrIEt1bWFyIiwiYXVkIjoiNHYxc29scnRtYmlqMzk3bGRmY2Q0cGtoY3IiLCJpZGVudGl0aWVzIjpbeyJ1c2VySWQiOiJwcmF0ZWVra3VtYXIuamFpbjVAZ2lsZWFkLmNvbSIsInByb3ZpZGVyTmFtZSI6IkF1dGhlbnRpY2F0ZSIsInByb3ZpZGVyVHlwZSI6IlNBTUwiLCJpc3N1ZXIiOiJodHRwOlwvXC93d3cub2t0YS5jb21cL2V4azR2bTliNWhhUzVGaXR6Njk3IiwicHJpbWFyeSI6InRydWUiLCJkYXRlQ3JlYXRlZCI6IjE2ODE5NzUwMDk5NDgifV0sInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjgxOTc1Nzk2LCJleHAiOjE2ODE5NzkzOTYsImlhdCI6MTY4MTk3NTc5NiwiZmFtaWx5X25hbWUiOiJKYWluIiwiZW1haWwiOiJwcmF0ZWVra3VtYXIuamFpbjVAZ2lsZWFkLmNvbSJ9.lLUkCrouVFvR2tA2FUoCyYxcYYtNKWUGjEN1ioqrFv771RGjo18RAUei9W5EOWbZxJFt771SAEDliHZuyTiul0A5B4Ul7EIEyQ33dpwMF0-M3IyDcEkthnHr1Xyjhsf06K9uDWXhhEyeQHpKNheIQbNgBrNmtJPrJRPEaex9HdK_9DYfX6Rzh8YohiPa1NGEXfRkE9_5L9y0ENNOPj2UmD9-M3jwCe7NjDioLFE2389Fdm4VDbsOVvYSzdLWnva9Q-wutZHznLmTfm_2RC1RMfyoC0s0AsL8FeN4wArxsciDwUOgI4bditML6DoJAouK_2MuqVuQfCF9zGG87QjRzA",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Contributor_access_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{BABEbaseURL}}/imp/{{responseBodyFromCreateRequest}}",
 					"host": [
