@@ -1,2 +1,2 @@
 id,part_number,description,comments,lot_number,release_testing_requirement,containers_retained,protocol_id,site_id,release_testing_requirement_unit,containers_required_unit,drug_id
-1,FP-11273,"Dronedarone 400 mg TB, 60 ct.",Test1,CC80,null,null,GS-US-291-0109,1-71C88,null,null,1-7428I
+48,FP-13350,"BIC 50 mg/FTC 200 mg/TAF  25 mg TB, 30 ct",null,EN1705B1-A,null,null,GS-US-380-4547,1-202YWL,null,null,1-20GO13
